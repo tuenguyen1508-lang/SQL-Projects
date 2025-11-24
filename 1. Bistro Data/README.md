@@ -1,4 +1,6 @@
-🍽️ **Project Background**  
+**Bistro restaurant Data**
+
+🍽️ **Project Background**
 I recently “joined” the analytics team at **Bistro Restaurant**, a venue known for its diverse menu and loyal customer base. With a new menu launch on the horizon, my role was to dive into historical order data and uncover which dishes are driving sales, where customer preferences are strongest, and how the menu can be refined to increase both customer satisfaction and profitability. In simple terms, the goal was to turn raw order logs into clear, data-backed recommendations that support smarter menu design and pricing decisions.  
 
 ---

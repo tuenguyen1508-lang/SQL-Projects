@@ -7,8 +7,13 @@ I recently “joined” the analytics team at **Bistro Restaurant**, a venue kno
 The analysis was structured around three main objectives:  
 
 1️⃣ **Explore the `menu_items` table** to understand price range, cuisine types, and how the current menu is positioned.  
-2️⃣ **Analyse the `order_details` table** to study order volume, basket size, and overall purchasing patterns.  
+<img width="521" height="397" alt="image" src="https://github.com/user-attachments/assets/b96e1105-bf56-41d1-8ff2-73bab0ba042a" />
+
+2️⃣ **Analyse the `order_details` table** to study order volume, basket size, and overall purchasing patterns. 
+<img width="479" height="318" alt="image" src="https://github.com/user-attachments/assets/5a19001d-dfb1-4d9c-afc4-54a908d07806" />
+
 3️⃣ **Combine both datasets** to connect what’s on the menu with how customers actually respond to it—identifying star dishes, underperformers, and revenue drivers.  
+<img width="571" height="401" alt="image" src="https://github.com/user-attachments/assets/b3622e28-9635-4aae-89b4-5df602e4ffab" />
 
 ---
 

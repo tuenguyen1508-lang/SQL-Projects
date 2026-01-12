@@ -5,6 +5,16 @@ I recently “joined” the analytics team at **Bistro Restaurant**, a venue kno
 
 ---
 
+💡 **Insights & Recommendations**  
+
+- **Lean into Italian cuisine:** Given its strong role in high-value orders, consider adding seasonal Italian specials or premium variants to further grow revenue.  
+- **Protect and promote bestsellers:** Items like **hamburgers** and **edamame** act as reliable anchors—feature them prominently on the menu and in combo deals.  
+- **Revisit low performers:** Dishes like **chicken tacos** may need recipe improvements, rebranding, better placement on the menu, or targeted promotions—or, if they remain weak, potential removal.  
+- **Design bundles around behaviour:** Large orders suggest demand for sharable platters or curated “family-style” sets, especially featuring top Italian and American favourites.  
+
+Overall, the data suggests that doubling down on what customers already love, while refining or replacing weaker items, is the most effective path to a more profitable and customer-centric menu.
+
+---
 🎯 **Objectives**  
 The analysis was structured around three main objectives:  
 
@@ -27,14 +37,5 @@ From the **orders side**, 5,370 orders generated 12,234 items sold, with the lar
 
 When both tables were combined using a **LEFT JOIN**, more detailed patterns emerged. **Hamburgers** surfaced as the most frequently ordered item, while **chicken tacos** were the least popular. The highest-value single order (about \$190) consisted mostly of Italian dishes, reinforcing that **Italian cuisine is both popular and profitable** for Bistro Restaurant.  
 
----
 
-💡 **Insights & Recommendations**  
-
-- **Lean into Italian cuisine:** Given its strong role in high-value orders, consider adding seasonal Italian specials or premium variants to further grow revenue.  
-- **Protect and promote bestsellers:** Items like **hamburgers** and **edamame** act as reliable anchors—feature them prominently on the menu and in combo deals.  
-- **Revisit low performers:** Dishes like **chicken tacos** may need recipe improvements, rebranding, better placement on the menu, or targeted promotions—or, if they remain weak, potential removal.  
-- **Design bundles around behaviour:** Large orders suggest demand for sharable platters or curated “family-style” sets, especially featuring top Italian and American favourites.  
-
-Overall, the data suggests that doubling down on what customers already love, while refining or replacing weaker items, is the most effective path to a more profitable and customer-centric menu.
 

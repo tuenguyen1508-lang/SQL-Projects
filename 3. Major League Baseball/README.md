@@ -1,6 +1,6 @@
 # ⚾ MLB Player Analytics Project
 
-## 🧾 Background  
+## Background  
 
 You’ve just started as a **Data Analyst Intern for Major League Baseball (MLB)** and gained access to a rich historical database of player information. This dataset spans multiple decades and includes details such as:  
 
@@ -13,7 +13,7 @@ Your overall goal is to analyse how **player statistics and characteristics have
 
 ---
 
-## 🎯 Project Objectives  
+## Project Objectives  
 
 As part of this role, you will investigate questions such as:
 
@@ -26,7 +26,7 @@ To answer these, your analysis is broken into four main tasks.
 
 ---
 
-## 📚 Task 1 – School Analysis  
+## Task 1 – School Analysis  
 
 - **(a)** For each **decade**, determine **how many schools** produced at least one MLB player.
 <img width="431" height="60" alt="image" src="https://github.com/user-attachments/assets/6ef561e7-3dbe-44d7-875d-584bfd9a2055" />
@@ -38,7 +38,7 @@ To answer these, your analysis is broken into four main tasks.
 <img width="584" height="135" alt="image" src="https://github.com/user-attachments/assets/dd0394df-7bae-4eb3-b114-0f73371812fa" />
 ---
 
-## 💰 Task 2 – Salary Analysis  
+## Task 2 – Salary Analysis  
 
 - **(a)** Identify the **top 20% of teams** ranked by their **average annual salary spending**.
 <img width="391" height="139" alt="image" src="https://github.com/user-attachments/assets/ff16a9b0-207f-4aa1-9229-fb9a8835cb62" />
@@ -50,7 +50,7 @@ To answer these, your analysis is broken into four main tasks.
 <img width="491" height="173" alt="image" src="https://github.com/user-attachments/assets/57523b5b-1ceb-4bab-9e5e-045d8ec029a2" />
 ---
 
-## 🧑‍💼 Task 3 – Player Career Analysis  
+## Task 3 – Player Career Analysis  
 
 - **(a)** For each player, calculate:  
   - **Age at debut game**  
@@ -66,7 +66,7 @@ To answer these, your analysis is broken into four main tasks.
 <img width="527" height="128" alt="image" src="https://github.com/user-attachments/assets/aef0c19b-428e-4392-9251-3122c74c1b35" />
 ---
 
-## ⚖️ Task 4 – Player Comparison Analysis  
+## Task 4 – Player Comparison Analysis  
 
 - **(a)** Identify **players who share the same birthday**.  
 <img width="592" height="94" alt="image" src="https://github.com/user-attachments/assets/4a69f9fb-90dd-4111-8a83-fd27bdcee7f3" />

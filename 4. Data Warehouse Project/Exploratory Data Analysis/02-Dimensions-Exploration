@@ -1,0 +1,31 @@
+/* =========================================================
+   Script Purpose: Gold Layer Exploration (Distinct Values)
+   =========================================================
+   This script explores key business attributes in the Gold
+   layer by listing distinct values from dimension views.
+
+   What it does:
+   1) Customer Geography
+      - Retrieves a distinct list of countries from gold.dim_customers
+        to understand where customers are located.
+
+   2) Product Hierarchy (Major Divisions)
+      - Retrieves distinct combinations of category, subcategory,
+        and product_name from gold.dim_products to understand the
+        product structure and available product groupings.
+      - Orders results by category, subcategory, then product_name
+        for easier browsing and validation.
+   ========================================================= */
+
+-- Explore All Countries our customers come from
+SELECT DISTINCT
+    country
+FROM gold.dim_customers;
+
+-- Explore All Categories "The Major Divisions"
+SELECT DISTINCT
+    category,
+    subcategory,
+    product_name
+FROM gold.dim_products
+ORDER BY 1, 2, 3;

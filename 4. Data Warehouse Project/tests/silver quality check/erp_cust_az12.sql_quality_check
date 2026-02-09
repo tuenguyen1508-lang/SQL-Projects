@@ -1,0 +1,68 @@
+/* =========================================================
+   Script Purpose
+   =========================================================
+   This script builds and populates the Silver ERP customer
+   table (silver.erp_cust_az12) from the Bronze source table
+   (bronze.erp_cust_az12), applying data cleansing,
+   standardization, and validation checks.
+
+   What it does:
+   1) Table Build (Silver)
+      - Drops and recreates silver.erp_cust_az12 with a clean,
+        typed schema for downstream analytics.
+      - Adds dwh_create_date (default GETDATE()) to track when
+        each row was loaded into the warehouse.
+
+   2) Data Transformation (Bronze -> Silver)
+      - Customer ID cleansing:
+        * Removes 'NAS' prefix from cid when present to standardize IDs
+          (e.g., NAS123 -> 123).
+      - Birthdate validation:
+        * Sets bdate to NULL if it is in the future (bdate > GETDATE()).
+      - Gender standardization:
+        * Maps various gender representations to consistent values:
+          'F'/'Female' -> 'Female'
+          'M'/'Male'   -> 'Male'
+          otherwise    -> 'n/a'
+
+   3) Data Quality Checks (Validation)
+      - Identifies out-of-range birthdates:
+        * Expectation: bdate between 1924-01-01 and today
+      - Reviews distinct standardized gender values for consistency
+   ========================================================= */
+
+IF OBJECT_ID ('silver.erp_cust_az12', 'U') IS NOT NULL
+	DROP TABLE silver.erp_cust_az12;
+CREATE TABLE silver.erp_cust_az12 (
+    cid    NVARCHAR(50),
+    bdate  DATE,
+    gen    NVARCHAR(50),
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
+);
+
+INSERT INTO silver.erp_cust_az12 (cid, bdate, gen)
+SELECT
+    CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid))
+         ELSE cid
+    END AS cid,
+    CASE WHEN bdate > GETDATE() THEN NULL
+         ELSE bdate
+    END AS bdate,
+    CASE WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
+         WHEN UPPER(TRIM(gen)) IN ('M', 'MALE')   THEN 'Male'
+         ELSE 'n/a'
+    END AS gen
+FROM bronze.erp_cust_az12;
+
+-- Identify Out-of-Range Dates
+-- Expectation: Birthdates between 1924-01-01 and Today
+SELECT DISTINCT 
+    bdate 
+FROM silver.erp_cust_az12
+WHERE bdate < '1924-01-01' 
+   OR bdate > GETDATE();
+
+-- Data Standardization & Consistency
+SELECT DISTINCT 
+    gen 
+FROM silver.erp_cust_az12;

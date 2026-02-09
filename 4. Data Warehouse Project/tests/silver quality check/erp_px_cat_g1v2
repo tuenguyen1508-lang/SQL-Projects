@@ -1,0 +1,42 @@
+/* =========================================================
+   Script Purpose
+   =========================================================
+   This script loads ERP product category data from the Bronze
+   layer (bronze.erp_px_cat_g1v2) into the Silver layer table
+   (silver.erp_px_cat_g1v2) and performs basic data quality
+   validation for text fields.
+
+   What it does:
+   1) Data Load (Bronze -> Silver)
+      - Inserts id, cat, subcat, and maintenance directly into
+        silver.erp_px_cat_g1v2.
+
+   2) Data Quality Checks (Validation)
+      - Checks for unwanted leading/trailing spaces in:
+        * cat, subcat, maintenance
+        Expectation: no rows returned.
+      - Reviews distinct maintenance values to confirm
+        standardization/consistency and detect unexpected values.
+   ========================================================= */
+
+INSERT INTO silver.erp_px_cat_g1v2 (id, cat, subcat, maintenance)
+SELECT 
+    id,
+    cat,
+    subcat,
+    maintenance
+FROM bronze.erp_px_cat_g1v2;
+
+-- Check for Unwanted Spaces
+-- Expectation: No Results
+SELECT 
+    * 
+FROM silver.erp_px_cat_g1v2
+WHERE cat != TRIM(cat) 
+   OR subcat != TRIM(subcat) 
+   OR maintenance != TRIM(maintenance);
+
+-- Data Standardization & Consistency
+SELECT DISTINCT 
+    maintenance 
+FROM silver.erp_px_cat_g1v2;

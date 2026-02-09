@@ -1,5 +1,5 @@
 /* =========================================================
-   Script Purpose: Gold Layer Exploration (Distinct Values)
+   Script Purpose: Dimensions Exploration (Gold Layer)
    =========================================================
    This script explores key business attributes in the Gold
    layer by listing distinct values from dimension views.

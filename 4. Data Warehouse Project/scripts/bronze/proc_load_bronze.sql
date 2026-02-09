@@ -19,6 +19,9 @@
    - bronze.erp_cust_az12
    - bronze.erp_loc_a101
    - bronze.erp_px_cat_g1v2
+
+Usage Example:
+    EXEC bronze.load_silver;
    ========================================================= */
 CREATE OR ALTER PROCEDURE bronze.load_bronze
 AS

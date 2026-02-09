@@ -1,0 +1,40 @@
+/* =========================================================
+   Script Purpose
+   =========================================================
+   This script loads and standardizes ERP location data from
+   the Bronze layer (bronze.erp_loc_a101) into the Silver layer
+   table (silver.erp_loc_a101), and validates country values.
+
+   What it does:
+   1) Data Transformation (Bronze -> Silver)
+      - Cleans cid:
+        * Removes hyphens from cid to standardize ID formatting
+          (e.g., 'A-101' -> 'A101').
+      - Standardizes cntry:
+        * Converts country codes to full names where applicable:
+          'DE'        -> 'Germany'
+          'US'/'USA'  -> 'United States'
+        * Replaces blank or NULL country values with 'n/a'
+        * Trims whitespace for consistent text values
+
+   2) Data Quality Check (Validation)
+      - Lists distinct country values in silver.erp_loc_a101
+        to confirm standardization and detect unexpected values
+   ========================================================= */
+
+INSERT INTO silver.erp_loc_a101 (cid, cntry)
+SELECT
+    REPLACE(cid, '-', '') cid,
+    CASE
+        WHEN TRIM(cntry) = 'DE' THEN 'Germany'
+        WHEN TRIM(cntry) IN ('US', 'USA') THEN 'United States'
+        WHEN TRIM(cntry) = '' OR cntry IS NULL THEN 'n/a'
+        ELSE TRIM(cntry)
+    END AS cntry
+FROM bronze.erp_loc_a101;
+
+-- Data Standardization & Consistency
+SELECT DISTINCT
+    cntry
+FROM silver.erp_loc_a101
+ORDER BY cntry;

@@ -1,0 +1,86 @@
+/* =========================================================
+   Script Purpose: Ranking Analysis (Gold Layer)
+   =========================================================
+   This script performs ranking-based analysis on the Gold
+   layer to identify top/bottom performers across products,
+   subcategories, and customers.
+
+   What it does:
+   1) Top Revenue Products
+      - Returns the top 5 products by total revenue using:
+        * Simple ranking (TOP + ORDER BY)
+        * Flexible ranking (RANK() window function), useful when
+          you want ties handled explicitly or extend logic later.
+
+   2) Lowest Revenue Products
+      - Returns the bottom 5 products by total revenue to highlight
+        underperforming items.
+
+   3) Top Revenue Subcategories
+      - Returns the top 5 subcategories by total revenue to identify
+        the strongest product groupings.
+
+   4) Lowest-Engagement Customers
+      - Returns the 3 customers with the fewest distinct orders placed,
+        useful for identifying low-activity customers.
+   ========================================================= */
+
+-- Which 5 Products generate the highest Revenue?
+-- Simple Ranking
+SELECT TOP 5
+    p.product_name,
+    SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+LEFT JOIN gold.dim_products p
+    ON p.product_key = f.product_key
+GROUP BY p.product_name
+ORDER BY total_revenue DESC;
+
+-- Complex but Flexible Ranking Using Window Functions
+SELECT *
+FROM (
+    SELECT 
+        p.product_name,
+        SUM(f.sales_amount) AS total_revenue,
+        RANK() OVER (ORDER BY SUM(f.sales_amount) DESC) AS rank_products
+    FROM gold.fact_sales f
+    LEFT JOIN gold.dim_products p
+        ON p.product_key = f.product_key
+    GROUP BY p.product_name
+) t
+WHERE rank_products <= 5;
+
+-- Which 5 Products generate the worst Revenue?
+SELECT TOP 5
+    p.product_name,
+    SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+LEFT JOIN gold.dim_products p
+    ON p.product_key = f.product_key
+GROUP BY p.product_name
+ORDER BY total_revenue ASC;
+
+-- Which 5 Sub-Categories generate the highest Revenue?
+SELECT TOP 5
+    p.subcategory,
+    SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+LEFT JOIN gold.dim_products p
+    ON p.product_key = f.product_key
+GROUP BY p.subcategory
+ORDER BY total_revenue DESC;
+
+-- The 3 Customers with the fewest orders placed
+SELECT TOP 3
+    c.customer_key,
+    c.first_name,
+    c.last_name,
+    COUNT(DISTINCT order_number) AS total_orders
+FROM gold.fact_sales f
+LEFT JOIN gold.dim_customers c
+    ON c.customer_key = f.customer_key
+GROUP BY
+    c.customer_key,
+    c.first_name,
+    c.last_name
+ORDER BY total_orders ASC;

@@ -1,5 +1,5 @@
 /* =========================================================
-   Script Purpose: Gold Layer Magnitude Analysis
+   Script Purpose: Magnitude Analysis (Gold Layer)
    =========================================================
    This script explores key business breakdowns using the Gold
    layer star schema (dimensions + fact) to understand customer,
